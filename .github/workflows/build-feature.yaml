@@ -24,7 +24,6 @@ jobs:
         run: npm install  
 
       - name: Running Unit Tests
-        run: ng test --watch=false
-
-      - name: Building project...
-        run: ng build
+        run: |
+          ng test --watch=false
+          ng build
