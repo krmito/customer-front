@@ -22,12 +22,16 @@ jobs:
 
       - name: Node.js setup completed
         run: echo "Node.js version 18 setup completed"
-      
+
+ 
       - name: Install dependencies, build and run test
         run: |
           echo "Install dependencies..."
           npm install 
           echo "Dependencies installed"
+          echo "Installing Angular CLI..."
+          npm install -g @angular/cli
+          echo "Angular CLI installed"
           echo "Running Unit Tests..."
           npm run test
           echo "Tests completed"
