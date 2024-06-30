@@ -25,8 +25,19 @@ jobs:
 
       - name: Install angular cli
         run: npm install -g @angular/cli@latest
-        
+
       - name: Running Unit Tests
         run: |
           ng test --watch=false
           ng build
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1.10
+        env:
+          SONAR_TOKEN: db63e07dbdc588414b3d6da704119ca08ef4fd01
+        with:
+          args: >
+            -Dsonar.projectKey=customer-front
+            -Dsonar.organization=krmito
+            -Dsonar.sources=.
+            -Dsonar.host.url=https://sonarcloud.io
