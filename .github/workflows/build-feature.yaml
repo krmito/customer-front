@@ -20,18 +20,11 @@ jobs:
         with:
          node-version: 18 
 
-      - name: Node.js setup completed
-        run: echo "Node.js version 18 setup completed"
-
- 
-      - name: Install dependencies, build and run test
-        run: |
-          npm install  
+      - name: Install dependencies
+        run: npm install  
 
       - name: Running Unit Tests
-        run: |
-          npm run test
+        run: ng test --watch=false
 
       - name: Building project...
-        run: |
-          npm run build
+        run: ng build
