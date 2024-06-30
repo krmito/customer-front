@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-feature:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: pull and checkout from git repository
         uses: actions/checkout@v4 
@@ -26,15 +26,12 @@ jobs:
  
       - name: Install dependencies, build and run test
         run: |
-          echo "Install dependencies..."
-          npm install 
-          echo "Dependencies installed"
-          echo "Installing Angular CLI..."
-          npm install -g @angular/cli
-          echo "Angular CLI installed"
-          echo "Running Unit Tests..."
+          npm install  
+
+      - name: Running Unit Tests
+        run: |
           npm run test
-          echo "Tests completed"
-          echo "Building project..."
+
+      - name: Building project...
+        run: |
           npm run build
-          echo "Build completed"
