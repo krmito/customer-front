@@ -1,0 +1,36 @@
+name:  build and test features branchs
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  build-feature:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull and checkout from git repository
+        uses: actions/checkout@v4 
+
+      - name: Checkout completed
+        run: echo "Checked out repository"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+         node-version: 18 
+
+      - name: Node.js setup completed
+        run: echo "Node.js version 18 setup completed"
+      
+      - name: Install dependencies, build and run test
+        run: |
+          echo "Install dependencies..."
+          npm install 
+          echo "Dependencies installed"
+          echo "Running Unit Tests..."
+          npm run test
+          echo "Tests completed"
+          echo "Building project..."
+          npm run build
+          echo "Build completed"
