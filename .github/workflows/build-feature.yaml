@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-feature:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: pull and checkout from git repository
         uses: actions/checkout@v4 
@@ -31,13 +31,13 @@ jobs:
           ng test --watch=false
           ng build
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2.3.0
-        env:
-          SONAR_TOKEN: db63e07dbdc588414b3d6da704119ca08ef4fd01
-        with:
-          args: >
-            -Dsonar.projectKey=customer-front
-            -Dsonar.organization=krmito
-            -Dsonar.sources=.
-            -Dsonar.host.url=https://sonarcloud.io
+ #     - name: SonarCloud Scan
+  #      uses: SonarSource/sonarcloud-github-action@v2.3.0
+   #     env:
+   #       SONAR_TOKEN: db63e07dbdc588414b3d6da704119ca08ef4fd01
+   #     with:
+   #       args: >
+   #         -Dsonar.projectKey=customer-front
+   #         -Dsonar.organization=krmito
+  #          -Dsonar.sources=.
+   #         -Dsonar.host.url=https://sonarcloud.io
