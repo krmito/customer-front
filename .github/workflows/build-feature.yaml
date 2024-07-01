@@ -32,7 +32,7 @@ jobs:
           ng build
 
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@<action version>
+        uses: sonarsource/sonarcloud-github-action@<v2.1.0>
         env:
           SONAR_TOKEN: db63e07dbdc588414b3d6da704119ca08ef4fd01
         with:
