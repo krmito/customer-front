@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-feature:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: pull and checkout from git repository
         uses: actions/checkout@v4 
