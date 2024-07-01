@@ -1,0 +1,52 @@
+name:  build and test features branchs
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-feature:
+    runs-on: windows-latest
+    steps:
+      - name: pull and checkout from git repository
+        uses: actions/checkout@v4 
+
+      - name: Checkout completed
+        run: echo "Checked out repository"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+         node-version: 18 
+
+      - name: Install dependencies
+        run: npm install  
+
+      - name: Install angular cli
+        run: npm install -g @angular/cli@latest
+
+      - name: Run tests with coverage
+        run: npm test -- --coverage --coverageReporters=text-lcov | tee coverage.lcov
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: coverage.lcov
+          
+ #     - name: Running Unit Tests
+ #       run: |
+ #         ng test --watch=false
+ #         ng build
+
+ #     - name: SonarCloud Scan
+  #      uses: SonarSource/sonarcloud-github-action@v2.3.0
+   #     env:
+   #       SONAR_TOKEN: db63e07dbdc588414b3d6da704119ca08ef4fd01
+   #     with:
+   #       args: >
+   #         -Dsonar.projectKey=customer-front
+   #         -Dsonar.organization=krmito
+  #          -Dsonar.sources=.
+   #         -Dsonar.host.url=https://sonarcloud.io
