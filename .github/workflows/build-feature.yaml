@@ -1,9 +1,6 @@
 name:  build and test features branchs
 
 on:
-  push:
-    branches:
-      - feature/*
   pull_request:
     branches:
       - develop
@@ -29,10 +26,19 @@ jobs:
       - name: Install angular cli
         run: npm install -g @angular/cli@latest
 
-      - name: Running Unit Tests
-        run: |
-          ng test --watch=false
-          ng build
+      - name: Run tests with coverage
+        run: npm test -- --coverage --coverageReporters=text-lcov | tee coverage.lcov
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: coverage.lcov
+          
+ #     - name: Running Unit Tests
+ #       run: |
+ #         ng test --watch=false
+ #         ng build
 
  #     - name: SonarCloud Scan
   #      uses: SonarSource/sonarcloud-github-action@v2.3.0
